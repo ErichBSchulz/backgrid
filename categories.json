@@ -22,6 +22,7 @@
         "classes": [
           "Backgrid.CellEditor",
           "Backgrid.InputCellEditor",
+          "Backgrid.BooleanCellEditor",
           "Backgrid.SelectCellEditor"
         ]
       }, {
@@ -48,9 +49,11 @@
       }, {
         "name": "Others",
         "classes": [
+          "Backgrid.Command",
           "Backgrid.Grid",
           "Backgrid.Body",
           "Backgrid.Row",
+          "Backgrid.EmptyRow",
           "Backgrid.Footer"
         ]
       }
@@ -96,7 +99,8 @@
         "name": "Filter",
         "classes": [
           "Backgrid.Extension.ServerSideFilter",
-          "Backgrid.Extension.ClientSideFilter"
+          "Backgrid.Extension.ClientSideFilter",
+          "Backgrid.Extension.LunrFilter"
         ]
       }
     ]

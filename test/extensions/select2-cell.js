@@ -2,7 +2,7 @@
   backgrid
   http://github.com/wyuenho/backgrid
 
-  Copyright (c) 2013 Jimmy Yuen Ho Wong
+  Copyright (c) 2013 Jimmy Yuen Ho Wong and contributors
   Licensed under the MIT @license.
 */
 describe("A Select2CellEditor", function () {
@@ -202,12 +202,22 @@ describe("A Select2CellEditor", function () {
     spyOn(editor.formatter, "toRaw").andCallThrough();
     spyOn(editor, "trigger").andCallThrough();
 
+    var backgridDoneTriggerCount = 0;
+    var backgridDoneTriggerArgs;
+    editor.model.on("backgrid:edited", function () {
+      backgridDoneTriggerCount++;
+      backgridDoneTriggerArgs = [].slice.call(arguments);
+    });
+
     editor.$el.select2("val", 1).change();
     expect(editor.formatter.toRaw).toHaveBeenCalledWith("1");
     expect(editor.formatter.toRaw.calls.length).toBe(1);
     expect(editor.model.get(editor.column.get("name"))).toBe("1");
-    expect(editor.trigger).toHaveBeenCalledWith("backgrid:done", editor);
-    expect(editor.trigger.calls.length).toBe(1);
+
+    expect(backgridDoneTriggerCount).toBe(1);
+    expect(backgridDoneTriggerArgs[0]).toEqual(editor.model);
+    expect(backgridDoneTriggerArgs[1]).toEqual(editor.column);
+    expect(backgridDoneTriggerArgs[2].passThru()).toBe(true);
   });
 
 });
@@ -345,7 +355,7 @@ describe("A Select2Cell", function () {
 
     cell.$el.click();
     expect(cell.$el.find(".select2-container").length).toBe(1);
-    expect(cell.currentEditor.select2Options).toEqual({width: "resolve"});
+    expect(cell.currentEditor.select2Options).toEqual({containerCssClass: "select2-container", width: "resolve"});
   });
 
 });

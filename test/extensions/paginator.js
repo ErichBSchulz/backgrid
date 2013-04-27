@@ -2,7 +2,7 @@
   backgrid
   http://github.com/wyuenho/backgrid
 
-  Copyright (c) 2013 Jimmy Yuen Ho Wong
+  Copyright (c) 2013 Jimmy Yuen Ho Wong and contributors
   Licensed under the MIT @license.
 */
 describe("A Paginator", function () {
@@ -33,23 +33,6 @@ describe("A Paginator", function () {
       });
 
       paginator.render();
-    });
-
-    it("renders a cell with the right column span", function () {
-      expect(paginator.el.tagName).toBe("TFOOT");
-      expect(paginator.$el.find("tr > td[colspan=1]").length).toBe(1);
-
-      paginator.columns.add({name: "year", cell: "integer"});
-      expect(paginator.$el.find("tr > td[colspan=2]").length).toBe(1);
-
-      paginator.columns.remove(paginator.columns.last());
-      expect(paginator.$el.find("tr > td[colspan=1]").length).toBe(1);
-
-      paginator.columns.add({name: "price", cell: "number", renderable: false});
-      expect(paginator.$el.find("tr > td[colspan=1]").length).toBe(1);
-
-      paginator.columns.last().set("renderable", true);
-      expect(paginator.$el.find("tr > td[colspan=2]").length).toBe(1);
     });
 
     it("has page handles that go to the correct pages when clicked", function () {
@@ -154,23 +137,6 @@ describe("A Paginator", function () {
       });
 
       paginator.render();
-    });
-
-    it("renders a cell with the right column span", function () {
-      expect(paginator.el.tagName).toBe("TFOOT");
-      expect(paginator.$el.find("tr > td[colspan=1]").length).toBe(1);
-
-      paginator.columns.add({name: "year", cell: "integer"});
-      expect(paginator.$el.find("tr > td[colspan=2]").length).toBe(1);
-
-      paginator.columns.remove(paginator.columns.last());
-      expect(paginator.$el.find("tr > td[colspan=1]").length).toBe(1);
-
-      paginator.columns.add({name: "price", cell: "number", renderable: false});
-      expect(paginator.$el.find("tr > td[colspan=1]").length).toBe(1);
-
-      paginator.columns.last().set("renderable", true);
-      expect(paginator.$el.find("tr > td[colspan=2]").length).toBe(1);
     });
 
     it("has page handles that go to the correct pages when clicked", function () {
